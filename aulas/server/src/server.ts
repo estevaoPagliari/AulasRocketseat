@@ -1,15 +1,12 @@
 import fastify from 'fastify'
-import { PrismaClient } from '@prisma/client'
+//import { memoriesRoutes } from './routes/memories'
+
+// import { PrismaClient } from '@prisma/client'
 // import { json } from 'stream/consumers'
 
 const app = fastify()
-const prisma = new PrismaClient()
 
-app.get('/hello', async () => {
-  const user = await prisma.user.findMany()
-
-  return user
-})
+//app.register(memoriesRoutes)
 
 app
   .listen({

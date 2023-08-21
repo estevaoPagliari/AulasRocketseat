@@ -40,10 +40,10 @@ export default function App() {
       <View className="flex-1 items-center justify-center gap-6">
         <StylesNwlLogo />
         <View className="space-y-2">
-          <Text className="font-title text-center text-2xl leading-tight text-zinc-50">
+          <Text className="text-center font-title text-2xl leading-tight text-zinc-50">
             Sua cápsula do tempo
           </Text>
-          <Text className="font-body text-center text-base leading-relaxed text-zinc-100">
+          <Text className="text-center font-body text-base leading-relaxed text-zinc-100">
             Colecione momentos marcantes da sua jornada e compartilhe (se
             quiser) com o mundo!
           </Text>
