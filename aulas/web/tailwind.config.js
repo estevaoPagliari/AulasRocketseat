@@ -1,5 +1,3 @@
-const { url } = require('inspector');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -11,11 +9,11 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: 'var(--font-roboto)',
-        alt : 'var(--font-Bai-Jamjuree)'
+        alt: 'var(--font-Bai-Jamjuree)',
       },
 
-      color:{
-        gray:{
+      color: {
+        gray: {
           50: '#eaeaea',
           100: '#bebebf',
           200: '#9e9ea0',
@@ -27,7 +25,7 @@ module.exports = {
           800: '#1f1f23',
           900: '#121215',
         },
-        purple:{
+        purple: {
           50: '#f3eefc',
           100: '#d8cbf7',
           200: '#c6b2f3',
@@ -39,7 +37,7 @@ module.exports = {
           800: '#48307e',
           900: '#372560',
         },
-        green:{
+        green: {
           50: '#e6fbef',
           100: '#b1f1ce',
           200: '#8cebb6',
@@ -52,19 +50,20 @@ module.exports = {
           900: '#025929',
         },
       },
-      backgroundImage:{
-        stripes: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1) 12.5%, transparent 12.5%,transparent)',
+      backgroundImage: {
+        stripes:
+          'linear-gradient(to bottom, rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1) 12.5%, transparent 12.5%,transparent)',
       },
-      backgroundSize:{
+      backgroundSize: {
         stripes: '100% 8px',
       },
-      blur:{
+      blur: {
         full: '194px',
       },
-      fontSize:{
+      fontSize: {
         '5xl': '2.5rem',
       },
-    }, 
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }

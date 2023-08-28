@@ -1,24 +1,13 @@
-import { StatusBar } from 'expo-status-bar'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'expo-router'
 import { styled } from 'nativewind'
 import { ImageBackground, View, Text, TouchableOpacity } from 'react-native'
 import { useAuthRequest, makeRedirectUri } from 'expo-auth-session'
 import * as SecureStore from 'expo-secure-store'
 
-import bluBg from '../src/assets/luz.png'
-import Stripes from '../src/assets/stripes.svg'
 import NwlLogo from '../src/assets/nlw-spacetime-logo.svg'
 
 import { api } from '../src/lib/api'
-
-import {
-  useFonts,
-  Roboto_400Regular,
-  Roboto_700Bold,
-} from '@expo-google-fonts/roboto'
-
-import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
 
 const discovery = {
   authorizationEndpoint: 'https://github.com/login/oauth/authorize',
@@ -26,16 +15,11 @@ const discovery = {
   revocationEndpoint:
     'https://github.com/settings/connections/applications/68a32bf56d37295ca21c',
 }
-const StylesStripes = styled(Stripes)
+
 const StylesNwlLogo = styled(NwlLogo)
 
 export default function App() {
   const router = useRouter()
-  const [hasLoadedFonts] = useFonts({
-    Roboto_400Regular,
-    Roboto_700Bold,
-    BaiJamjuree_700Bold,
-  })
 
   const [request, response, signInWithGithub] = useAuthRequest(
     {
@@ -53,8 +37,8 @@ export default function App() {
       code,
     })
     const { token } = response.data
+    console.log(token)
     await SecureStore.setItemAsync('token', token)
-
     router.push('/memories')
   }
 
@@ -62,20 +46,14 @@ export default function App() {
     if (response?.type === 'success') {
       const { code } = response.params
       handleGithubOAuthCode(code)
+      console.log('Sucesso')
+    } else {
+      console.log('Error')
     }
   }, [response])
 
-  if (!hasLoadedFonts) {
-    return null
-  }
   return (
-    <ImageBackground
-      source={bluBg}
-      className="relative flex-1 items-center bg-gray-900 px-8 py-8"
-      imageStyle={{ position: 'absolute', left: '-100%' }}
-    >
-      <StylesStripes className="absolute left-2" />
-
+    <View className=" flex-1 items-center px-8 py-8">
       <View className="flex-1 items-center justify-center gap-6">
         <StylesNwlLogo />
         <View className="space-y-2">
@@ -101,7 +79,6 @@ export default function App() {
       <Text className="font-body text-sm leading-relaxed text-zinc-200">
         Feito com 💜 no NLW da Rocketseat
       </Text>
-      <StatusBar style="auto" translucent />
-    </ImageBackground>
+    </View>
   )
 }
